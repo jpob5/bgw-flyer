@@ -1,0 +1,55 @@
+#root {
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  min-height: 100vh;
+  text-align: center;
+  background: url(../src/assets/bg.jpg);
+  background-size: 700px;
+  background-position: center 70%;
+  background-repeat: no-repeat;
+  padding: 2rem 0;
+}
+
+.topSection {
+  position: relative;
+  max-width: 300px;
+  margin: 0 auto;
+  .superBigOne {
+    max-width: 500px;
+    width: 100%;
+    will-change: filter;
+    transition: filter 300ms;
+  }
+  
+  .ticketsToWin {
+    position: relative;
+    max-width: 200px;
+    left: 20%;
+  }
+}
+
+
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
