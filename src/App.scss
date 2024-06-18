@@ -1,55 +1,387 @@
+@import 'mixins.scss';
+
 #root {
   position: relative;
   display: block;
   margin: 0 auto;
   min-height: 100vh;
   text-align: center;
-  background: url(../src/assets/bg.jpg);
-  background-size: 700px;
-  background-position: center 70%;
-  background-repeat: no-repeat;
   padding: 2rem 0;
 }
 
-.topSection {
+.background {
+  background: url(../src/assets/bg.jpg);
+  background-size: 700px;
+  background-position: center -297px;
+  background-repeat: no-repeat;
+  z-index: 0;
+  padding-bottom: 300px;
+  
+  @include breakpoint(sm) {
+    background-size: 1200px;
+    background-position: center -512px;
+    padding-bottom: 400px;
+  }
+  @include breakpoint(xl) {
+    padding-bottom: 0;
+  }
+
+  &:before {
+    content: '';
+    z-index: 0;
+    background: url(../src/assets/bg.jpg);
+    background-size: 175%;
+    background-position: right 38%;
+    background-repeat: no-repeat;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 400px;
+
+    @include breakpoint(sm) {
+      background-size: 1310px;
+      background-position: right 37%;
+      height: 500px;
+    }
+    @include breakpoint(xl) {
+      display: none;
+    }
+  }
+}
+
+.top-section {
   position: relative;
   max-width: 300px;
   margin: 0 auto;
-  .superBigOne {
+
+  @include breakpoint(sm) {
+    max-width: 500px;
+  }
+
+  .super-big-one {
     max-width: 500px;
     width: 100%;
-    will-change: filter;
-    transition: filter 300ms;
+    margin: auto;
+    @include breakpoint(sm) {
+      margin-bottom: 1rem;
+    }
   }
   
-  .ticketsToWin {
+  .ticket-area {
     position: relative;
-    max-width: 200px;
-    left: 20%;
+    height: 185px;
+
+    @include breakpoint(sm) {
+      height: 370px;
+    }
+
+    .tickets-to-win {
+      position: absolute;
+      width: 160px;
+      left: 50px;
+      top: 0;
+      transform: rotate(-10deg);
+
+      @include breakpoint(360) {
+        left: 60px;
+      }
+      @include breakpoint(sm) {
+        width: 240px;
+        left: 123px;
+      }
+    }
+
+    .tickets {
+      position: absolute;
+      left: 185px;
+      top: -26px;
+
+      @include breakpoint(360) {
+        left: 208px;
+      }
+      @include breakpoint(sm) {
+        left: 335px;
+        top: -57px;
+      }
+
+      >img {
+        position: absolute;
+        width: 70px;
+        transform-origin: center bottom;
+        image-rendering: crisp-edges;
+        filter: drop-shadow(4px 4px 1px rgba(0, 0, 0, 0.25));
+
+        @include breakpoint(sm) {
+          width: 110px;
+        }
+
+        &:nth-of-type(1) {
+          z-index: 5;
+          transform: rotate(10deg);
+        }
+        &:nth-of-type(2) {
+          z-index: 4;
+          transform: rotate(14deg);
+        }
+        &:nth-of-type(3) {
+          z-index: 3;
+          transform: rotate(18deg);
+        }
+        &:nth-of-type(4) {
+          z-index: 2;
+          transform: rotate(22deg);
+        }
+        &:nth-of-type(5) {
+          z-index: 1;
+          transform: rotate(26deg);
+        }
+      }
+    }
+  }
+
+  .top-section-text {
+    position: relative;
+    top: 0;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 26px;
+    line-height: 1.1;
+    height: 180px;
+
+    @include breakpoint(sm) {
+      font-size: 2rem;
+      height: 200px;
+    }
+    @include breakpoint(xl) {
+      height: 250px;
+    }
+
+    >p {
+      font-family: 'WorkSans', sans-serif;
+      margin: 0;
+    }
+  }
+
+  .logos {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      max-width: 200px;
+      flex: 1;
+      margin: 0 auto 0.5rem;
+    }
   }
 }
 
+.bottom-section {
+  position: relative;
+  padding-top: 2rem;
+  max-width: 300px;
+  margin: 0 auto;
 
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+  @include breakpoint(sm) {
+    max-width: 500px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .instructions {
+    p {
+      line-height: 1.15;
+      margin-top: 0;
+      margin-bottom: 0.75rem;
+      &:nth-of-type(1) {
+        text-transform: uppercase;
+        font-size: 1.5em;
+        font-weight: bold;
+      }
+      &:nth-of-type(2) {
+        font-size: 1.25em;
+        text-transform: capitalize;
+      }
+      &:nth-of-type(3) {
+        text-transform: uppercase;
+        font-size: 1.25em;
+        font-weight: bold;
+        margin-bottom: 0.25rem;
+      }
+    }
+    ul {
+      margin-top: 0;
+      text-align: left;
+      padding-left: 2rem;
+
+      @include breakpoint(sm) {
+        max-width: 400px;
+        margin: 0 auto;
+      }
+
+      li {
+        line-height: 1.25;
+        margin-bottom: 0.5rem;
+      }
+    }
   }
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+  .how-to-enter {
+    margin: 0 auto;
+    >p {
+      text-transform: uppercase;
+      font-size: 2em;
+      font-weight: bold;
+    }
+
+    ul {
+      margin: 0 auto;
+      padding: 0;
+      list-style: none;
+
+      li {
+        background: url(./assets/ticket-bg.svg) no-repeat;
+        background-size: contain;
+        padding: 1rem 1.5rem;
+        width: 300px;
+        height: 167px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+        margin-bottom: 3rem;
+
+        p {
+          margin: 0;
+          &:nth-of-type(1) {
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 1.5em;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+          }
+          &:nth-of-type(2) {
+            line-height: 1.15;
+            font-size: 0.875rem;
+          }
+        }
+        &:nth-of-type(1) {
+          transform: rotate(-5deg);
+        }
+        &:nth-of-type(2) {
+          position: relative;
+          background: none; // Z index issues means we need to hide background and use before/after
+          transform: rotate(5deg);
+          width: 280px;
+          @include breakpoint(360) {
+            width: 300px;
+          }
+          &:before {
+            content: ''; 
+            position: absolute;
+            z-index: -2;
+            background: url(./assets/ticket-bg.svg) no-repeat;
+            background-size: contain;
+            width: 300px;
+            height: 167px;
+            transform-origin: 100% 56%;
+            transform: rotate(5deg);
+            width: 280px;
+            @include breakpoint(360) {
+              width: 300px;
+            }
+          }
+          &:after {
+            content: ''; 
+            position: absolute;
+            z-index: -2;
+            background: url(./assets/ticket-bg.svg) no-repeat;
+            background-size: contain;
+            width: 300px;
+            height: 167px;
+            transform: rotate(0deg);
+            width: 280px;
+            @include breakpoint(360) {
+              width: 300px;
+            }
+          }
+        }
+        &:nth-of-type(3) {
+          padding: 1rem 1.4rem;
+          margin-top: -1rem;
+          p {
+            &:nth-of-type(1) {
+              margin-bottom: 0.25rem;
+            }
+          }
+        }
+      }
+      
+      @include breakpoint(md) {
+        position: relative;
+        margin: 0 -52px 2rem;
+        width: 604px;
+        height: 325px;
+
+        li {
+          position: absolute;
+          margin: 0;
+          &:nth-of-type(1) {
+            left: 0;
+          }
+          &:nth-of-type(2) {
+            position: absolute;
+            top: 12px;
+            right: 0;
+          }
+          &:nth-of-type(3) {
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+          }
+        }
+      }
+    }
   }
-}
 
-.card {
-  padding: 2em;
-}
+  .bottom-text {
+    p {
+      margin: 0 auto 0.5rem;
+      line-height: 1;
+      max-width: 400px;
 
-.read-the-docs {
-  color: #888;
+      &:nth-of-type(1) {
+        font-weight: bold;
+        font-size: 1.5rem;
+      }
+      &:nth-of-type(2) {
+      }
+      &:nth-of-type(3) {
+        margin-bottom: 1rem;
+      }
+      &:nth-of-type(4) {
+        font-weight: bold;
+        font-size: 1.5rem;
+      }
+      &:nth-of-type(5) {
+        font-weight: bold;
+        font-size: 1.5rem;
+      }
+      &:nth-of-type(6) {
+        margin-top: 4rem;
+        font-size: 0.75rem;
+        a {
+          color: #fff;
+          text-decoration: underline;
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
 }
